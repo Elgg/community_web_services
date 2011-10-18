@@ -13,8 +13,8 @@ Parameters
 ----------
 version: The Elgg version string
 
-Return
-------
+Response
+--------
 The version string for the newest release in that series
 
 
@@ -30,8 +30,21 @@ plugins.update.check
 Parameters
 ----------
 plugins: An array of plugin id strings
+version: Elgg version string
 
-Return
-------
-An array of plugin id strings for those that have new versions
+Response
+--------
+Array of new plugin versions available for download:
 
+```
+[
+  {
+    "plugin": <plugin 1 id>,
+    "download_url": <plugin 1 url>,
+  },
+  {
+    "plugin": <plugin 2 id>,
+    "download_url": <plugin 2 url>,
+  }
+]
+```
