@@ -11,7 +11,7 @@ elgg.update.check
 
 Parameters
 ----------
-version: The Elgg version string
+ * version: The Elgg version string
 
 Response
 --------
@@ -29,8 +29,8 @@ plugins.update.check
 
 Parameters
 ----------
-plugins: An array of plugin id strings
-version: Elgg version string
+ * plugins: An array of plugin id strings
+ * version: Elgg version string
 
 Response
 --------
