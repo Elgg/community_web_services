@@ -30,7 +30,7 @@ plugins.update.check
 Parameters
 ----------
  * plugins: An array of plugin id strings. The plugin id string is the md5 hash
-   of the author name, plugin version, and the plugin directory name.
+   of the plugin directory name, plugin version, and the plugin author name.
  * version: Elgg version string
 
 Response
