@@ -29,7 +29,8 @@ plugins.update.check
 
 Parameters
 ----------
- * plugins: An array of plugin id strings
+ * plugins: An array of plugin id strings. The plugin id string is the md5 hash
+   of the author name, plugin version, and the plugin directory name.
  * version: Elgg version string
 
 Response
@@ -40,10 +41,12 @@ Array of new plugin versions available for download:
 [
   {
     "plugin": <plugin 1 id>,
+    "version": <plugin verson string>,
     "download_url": <plugin 1 url>,
   },
   {
     "plugin": <plugin 2 id>,
+    "version": <plugin version string>,
     "download_url": <plugin 2 url>,
   }
 ]
