@@ -40,13 +40,17 @@ Array of new plugin versions available for download:
 ```
 [
   {
-    "plugin": <plugin 1 id>,
-    "version": <plugin verson string>,
+    "plugin_id": <plugin 1 id>,
+    "plugin_name": <plugin 1 name>,
+    "plugin_version": <plugin 1 verson string>,
+    "plugin_url": <plugin 1 homepage>,
     "download_url": <plugin 1 url>,
   },
   {
-    "plugin": <plugin 2 id>,
-    "version": <plugin version string>,
+    "plugin_id": <plugin 2 id>,
+    "plugin_name": <plugin 2 name>,
+    "plugin_version": <plugin 2 version string>,
+    "plugin_url": <plugin 2 homepage>,
     "download_url": <plugin 2 url>,
   }
 ]
