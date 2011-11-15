@@ -32,16 +32,42 @@ function community_ws_init() {
 function community_ws_plugin_check($plugins, $version) {
 	$updated_plugins = array();
 
-	foreach ($plugins as $plugin_id) {
-		if (rand(0,1) == 1) {
+	foreach ($plugins as $plugin_hash) {
+		$release = elgg_get_entities_from_metadata(array(
+			'type' => 'object',
+			'subtype' => 'plugin_release',
+			'metadata_name' => 'hash',
+			'metadata_value' => $plugin_hash,
+		));
+		if ($release) {
+			$release = $release[0];
+		} else {
+			continue;
+		}
+
+		$project = $release->getProject();
+		$newer_releases = elgg_get_entities(array(
+			'type' => 'object',
+			'subtype' => 'plugin_release',
+			'container_guid' => $project->getGUID(),
+			'created_time_lower' => $release->getTimeCreated(),
+			'order_by' => 'e.time_created desc',
+		));
+
+		if ($newer_releases) {
+			$new_release = $newer_releases[0];
+			$dl_link = get_config('wwwroot');
+			$dl_link .= "pg/plugins/download/{$new_release->getGUID()}";
+			
 			$info = new stdClass();
-			$info->plugin_id = $plugin_id;
-			$info->plugin_name = "Test plugin";
-			$info->plugin_version = "1.8";
-			$info->plugin_url = "http://community.elgg.org/pg/plugins/";
-			$info->download_url = "http://elgg.org";
+			$info->plugin_id = $plugin_hash;
+			$info->plugin_name = $project->title;
+			$info->plugin_version = $new_release->version;
+			$info->plugin_url = $new_release->getURL();
+			$info->download_url = $dl_link;
 			$updated_plugins[] = $info;
 		}
+
 	}
 
 	return $updated_plugins;
