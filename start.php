@@ -46,6 +46,10 @@ function community_ws_plugin_check($plugins, $version) {
 		}
 
 		$project = $release->getProject();
+		if (!$project) {
+			// this means the project access is not set to public
+			continue;
+		}
 		$newer_releases = elgg_get_entities(array(
 			'type' => 'object',
 			'subtype' => 'plugin_release',
