@@ -54,7 +54,7 @@ function community_ws_plugin_check($plugins, $version) {
 			'type' => 'object',
 			'subtype' => 'plugin_release',
 			'container_guid' => $project->getGUID(),
-			'created_time_lower' => $release->getTimeCreated(),
+			'created_time_lower' => $release->getTimeCreated() + 1,
 			'order_by' => 'e.time_created desc',
 		));
 
