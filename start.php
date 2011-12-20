@@ -3,7 +3,7 @@
  * Elgg community site web services
  */
 
-register_elgg_event_handler('init', 'system', 'community_ws_init');
+elgg_register_event_handler('init', 'system', 'community_ws_init');
 
 function community_ws_init() {
 	expose_function(
@@ -18,7 +18,7 @@ function community_ws_init() {
 			false,
 			false
 	);
-	
+
 }
 
 /**
@@ -69,7 +69,7 @@ function community_ws_plugin_check($plugins, $version) {
 				$elgg_version = community_ws_extract_version($version);
 				if ($plugin_require <= $version) {
 					$new_release = $newer_releases[$index];
-					$dl_link = get_config('wwwroot');
+					$dl_link = elgg_get_config('wwwroot');
 					$dl_link .= "pg/plugins/download/{$new_release->getGUID()}";
 
 					$info = new stdClass();
