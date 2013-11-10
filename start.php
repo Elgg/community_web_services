@@ -6,7 +6,8 @@
 elgg_register_event_handler('init', 'system', 'community_ws_init');
 
 function community_ws_init() {
-	expose_function(
+	if (function_exists("elgg_ws_expose_function")) {
+		elgg_ws_expose_function(
 			'plugins.update.check',
 			'community_ws_plugin_check',
 			array(
@@ -17,8 +18,8 @@ function community_ws_init() {
 			'GET',
 			false,
 			false
-	);
-
+		);
+	}
 }
 
 /**
