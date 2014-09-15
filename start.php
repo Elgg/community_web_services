@@ -71,7 +71,7 @@ function community_ws_plugin_check($plugins, $version) {
 				if ($plugin_require == $elgg_version) {
 					$new_release = $newer_releases[$index];
 					$dl_link = elgg_get_config('wwwroot');
-					$dl_link .= "pg/plugins/download/{$new_release->getGUID()}";
+					$dl_link .= "plugins/download/{$new_release->getGUID()}";
 
 					$info = new stdClass();
 					$info->plugin_id = $plugin_hash;
