@@ -66,9 +66,30 @@ function community_ws_plugin_check($plugins, $version) {
 			// loop from the newest to oldest, checking elgg version requirements
 			$index = 0;
 			while (isset($newer_releases[$index])) {
-				$plugin_require = community_ws_extract_version($newer_releases[$index]->elgg_version);
+				// elgg version we are looking for a new plugin release for
 				$elgg_version = community_ws_extract_version($version);
-				if ($plugin_require == $elgg_version) {
+				// each plugin release can now be compatible with more than a single elgg version
+				$release_compatibilities = $newer_releases[$index]->elgg_version;
+
+				$compatible_release = false;
+
+				// make sure that there is an array
+				if (is_array($release_compatibilities)) {
+					foreach($release_compatibilities as $release_compatibility)
+						$plugin_require = community_ws_extract_version($release_compatibility);
+						if ($plugin_require == $elgg_version) {
+							$compatible_release = true;
+						}
+					}
+				} else { // otherwise assume it's a string
+					$plugin_require = community_ws_extract_version($release_compatibilities);
+					if ($plugin_require == $elgg_version) {
+						$compatible_release = true;
+					}
+				}
+
+				// have we found the newest compatible release?
+				if ($compatible_release) {
 					$new_release = $newer_releases[$index];
 					$dl_link = elgg_get_config('wwwroot');
 					$dl_link .= "plugins/download/{$new_release->getGUID()}";
