@@ -75,7 +75,7 @@ function community_ws_plugin_check($plugins, $version) {
 
 				// make sure that there is an array
 				if (is_array($release_compatibilities)) {
-					foreach($release_compatibilities as $release_compatibility)
+					foreach ($release_compatibilities as $release_compatibility) {
 						$plugin_require = community_ws_extract_version($release_compatibility);
 						if ($plugin_require == $elgg_version) {
 							$compatible_release = true;
